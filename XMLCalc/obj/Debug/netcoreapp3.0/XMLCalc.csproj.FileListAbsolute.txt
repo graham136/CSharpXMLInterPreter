@@ -1,0 +1,12 @@
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.exe
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\Brazil.xml
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.deps.json
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.runtimeconfig.json
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.runtimeconfig.dev.json
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.dll
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\bin\Debug\netcoreapp3.0\XMLCalc.pdb
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\obj\Debug\netcoreapp3.0\XMLCalc.csprojAssemblyReference.cache
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\obj\Debug\netcoreapp3.0\XMLCalc.AssemblyInfoInputs.cache
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\obj\Debug\netcoreapp3.0\XMLCalc.AssemblyInfo.cs
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\obj\Debug\netcoreapp3.0\XMLCalc.dll
+C:\Users\graham\source\repos\XMLCalc\XMLCalc\obj\Debug\netcoreapp3.0\XMLCalc.pdb

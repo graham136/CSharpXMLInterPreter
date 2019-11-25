@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Country name="Brazil">
+  <Process name="Resident">
+
+    <!--- var doNotCalcStatutoryDeductions = taxStatusCode == BrazilTaxCodes.TaxStatus.NonResidentX; -->
+    <Condition name ="doNotCalcStatutoryDeductions"
+               ReturnVariable="doNotCalcStatutoryDeductions"
+               LeftVariable ="taxStatusCode"
+               RightVariable ="BrazilTaxCodes.TaxStatus.NonResidentX"
+               Operator ="Equals"
+               Types ="String"/>
+
+    <!--- var isResident = taxStatusCode == BrazilTaxCodes.TaxStatus.Resident; -->
+    <Condition name ="isResident"
+               ReturnVariable="isResident"
+               LeftVariable ="taxStatusCode"
+               RightVariable ="BrazilTaxCodes.TaxStatus.Resident"
+               Operator ="Equals"
+               Types ="String"/>
+
+    <!--- var getFiguresMethod = TaxCodeAmountSearch.AnualizedYTD; -->
+    <AssignmentValue name="getFiguresMethod"
+                ReturnVariable = "getFiguresMethod"
+                AssignValue ="TaxCodeAmountSearch.AnualizedYTD"
+                ReturnType ="Integer"/>
+
+    <!--- var getBonusMethod = TaxCodeAmountSearch.YTD; -->
+    <AssignmentVariable name="getBonusMethod"
+                ReturnVariable = "getBonusMethod"
+                AssignVariable ="TaxCodeAmountSearch.YTD"
+                ReturnType ="Integer"/>
+
+    <!--- var getPreviousFiguresMethod = PreviousTaxCodeSearch.YTD; -->
+    <AssignmentVariable name="getPreviousFiguresMethod"
+                ReturnVariable = "getPreviousFiguresMethod"
+                AssignVariable ="PreviousTaxCodeSearch.YTD"
+                ReturnType ="Integer"/>
+
+    <!--- var mtdOrYtdAnnualFormula = 1m; -->
+    <AssignmentValue name="mtdOrYtdAnnualFormula"
+                ReturnVariable = "mtdOrYtdAnnualFormula"
+                AssignValue ="1m"
+                ReturnType ="Decimal"/>
+
+    <!-- var mtdOrYtdDeannualizeFormula = Convert.ToDecimal(this.CompanyPeriods / this.EmployeePeriodsWorked); -->
+    <Formula name="mtdOrYtdDeannualizeFormula"
+             ReturnVariable="mtdOrYtdDeannualizeFormula"
+             FirstValue="CompanyPeriods"
+             SecondValue="EmployeePeriodsWorked"
+             Operation="Division"
+             ReturnType="Decimal"/>
+
+    <!--- this.IsNonCumulativeTaxMethod() -->
+    <AssignmentFromMethod
+                name="IsNonCumulative"
+                ReturnVariable = "IsNonCumulative"
+                AssignMethod ="IsNonCumulativeTaxMethod"
+                ReturnType ="Boolean"/>
+
+    <!--- IsNonCumulative_currentPeriodsWorked_Equals_EmployeePeriodsWorked -->
+    <ConditionalAssignmentVariable
+                name="IsNonCumulative_currentPeriodsWorked_Equals_EmployeePeriodsWorked"
+                ReturnVariable ="currentPeriodsWorked"
+                ReturnType ="Integer"
+                AssignVariable="EmployeePeriodsWorked"
+                ConditionVariable="IsNonCumulative"/>
+
+    <!--  GetCurrentPeriodsWorked(ref currentPeriodsWorked, Convert.ToInt32(this.dstEmployeeStatus.EmployeeEmploymentStatus[0].pkEmpEmploymentStatusID),
+                                  Convert.ToInt32(this.EmployeeID), dstCurrentRun, Convert.ToInt32(this.BureauTaxID), dstPreviousComponentTotals);-->
+    <ConditionalAssignmentFromMethodWithParameters
+                 name="GetCurrentPeriodsWorked"
+                 ReturnVariable = "currentPeriodsWorked"
+                 AssignMethod ="GetCurrentPeriodsWorked"
+                 ReturnType ="Integer"
+                 ParameterValues="(currentPeriodsWorked, dstEmployeeStatus.EmployeeEmploymentStatus[0].pkEmpEmploymentStatusID, EmployeeID, dstCurrentRun, BureauTaxID, dstPreviousComponentTotals )"
+                 ConditionVariable="IsNonCumulative"/>
+    
+    
+    
+    <!--  GetCurrentPeriodsWorked(ref currentPeriodsWorked, Convert.ToInt32(this.dstEmployeeStatus.EmployeeEmploymentStatus[0].pkEmpEmploymentStatusID),
+                                  Convert.ToInt32(this.EmployeeID), dstCurrentRun, Convert.ToInt32(this.BureauTaxID), dstPreviousComponentTotals);-->
+    <AssignmentFromMethodWithParameters
+                 name="GetCurrentPeriodsWorked"
+                 ReturnVariable = "currentPeriodsWorked"
+                 AssignMethod ="GetCurrentPeriodsWorked"
+                 ReturnType ="Integer"
+                 ParameterValues="(currentPeriodsWorked, dstEmployeeStatus.EmployeeEmploymentStatus[0].pkEmpEmploymentStatusID, EmployeeID, dstCurrentRun, BureauTaxID, dstPreviousComponentTotals )"/> 
+  </Process>
+</Country>
